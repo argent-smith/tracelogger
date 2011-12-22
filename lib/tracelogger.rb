@@ -19,11 +19,14 @@ module Tracelogger
   #   mylog = Log.new
   #   mylog.info "Some Message"
   class Log
+
+    # @private
     def initialize # :nodoc:
       @log = Log4r::Logger.new "main"
       @log.outputters = Log4r::SyslogOutputter.new("tracelogger", :facility => "LOG_DAEMON")
     end
 
+    # @private
     def method_missing(meth, *args, &block) # :nodoc:
       @log.send meth, *args, &block
     end
