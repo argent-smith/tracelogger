@@ -1,3 +1,3 @@
-module DumbTracer
+module Tracelogger
   VERSION = "0.0.1"
 end

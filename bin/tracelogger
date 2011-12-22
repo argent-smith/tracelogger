@@ -6,4 +6,6 @@ $:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
 require "rubygems"
 require "tracelogger"
 
+# The main application running script.
+
 Tracelogger::App.new.run

@@ -4,7 +4,7 @@ require "tracelogger/version"
 
 Gem::Specification.new do |s|
   s.name        = "tracelogger"
-  s.version     = DumbTracer::VERSION
+  s.version     = Tracelogger::VERSION
   s.authors     = ["Pavel Argentov"]
   s.email       = ["argentoff@gmail.com"]
   s.homepage    = "https://github.com/argent-smith/tracelogger"
@@ -17,6 +17,9 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
+  s.add_development_dependency "yard"
+  s.add_development_dependency "rdoc"
+  s.add_development_dependency "redcarpet"
+  s.add_development_dependency "rake"
   s.add_runtime_dependency "log4r"
 end

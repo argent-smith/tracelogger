@@ -3,36 +3,51 @@ require "optparse"
 require 'log4r'
 require 'log4r/outputter/syslogoutputter'
 
+# Author:: Pavel Argentov (mailto:argentoff@gmail.com)
+# License:: MIT (See README)
+#
+# This module contains all the classes needed by Tracelogger.
 module Tracelogger
 
+  # Tracelogger's Configuration: used when running the app.
   class Configuration
     attr_accessor :options, :host
   end
 
+  # This class wraps Log4r's Syslog logic.
+  # == Usage
+  #   mylog = Log.new
+  #   mylog.info "Some Message"
   class Log
-    def initialize
+    def initialize # :nodoc:
       @log = Log4r::Logger.new "main"
       @log.outputters = Log4r::SyslogOutputter.new("tracelogger", :facility => "LOG_DAEMON")
     end
 
-    def method_missing(meth, *args, &block)
+    def method_missing(meth, *args, &block) # :nodoc:
       @log.send meth, *args, &block
     end
   end
 
+  # Wraps `traceroute` run.
   class Traceroute
+
+    # Finds the system's traceroute executable.
     def initialize
       @command = `which traceroute`.chomp
     end
 
+    # Runs the found traceroute with the specified address and returns the
+    # result.
     def trace host
       `env #{@command} #{host} 2>&1`
     end
   end
 
+  # Application run scenario.
   class App
 
-    # Initializes the app's settings
+    # Initializes the app's settings and parses the CLI options.
     def initialize
       @config = Configuration.new
       options = {}
@@ -56,23 +71,27 @@ module Tracelogger
       @log = Log.new
     end
 
-    def log message
+    # Logs the message.
+    def log message # :nodoc:
       @log.info message
     end
 
-    def start
+    # Executed right after the start.
+    def start # :nodoc:
       log "Starting"
     end
 
-    def wrapup
+    # Executed right before the end.
+    def wrapup # :nodoc:
       log "Finishing"
     end
 
-    def trace
+    # Logs the underlying traceroute's result.
+    def trace # :nodoc:
       log Traceroute.new.trace @config.host
     end
 
-    # Runs the app
+    # Runs the app scenario.
     def run
       start
       trace
