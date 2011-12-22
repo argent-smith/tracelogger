@@ -16,3 +16,8 @@ Rake::RDocTask.new do |rdoc|
 end
 
 YARD::Rake::YardocTask.new
+
+desc "Clean up the development-only stuff"
+task :clean do
+  system "git clean -fd"
+end
