@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+# for development purposes
+$:.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
+
+require "rubygems"
+require "tracelogger"
+
+Tracelogger::App.new.run
