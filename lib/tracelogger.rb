@@ -12,7 +12,7 @@ module Tracelogger
   class Log
     def initialize
       @log = Log4r::Logger.new "main"
-      @log.outputters = Log4r::SyslogOutputter.new("dumb_tracer", :facility => "LOG_DAEMON")
+      @log.outputters = Log4r::SyslogOutputter.new("tracelogger", :facility => "LOG_DAEMON")
     end
 
     def method_missing(meth, *args, &block)

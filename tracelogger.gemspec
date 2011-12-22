@@ -1,17 +1,15 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "dumb_tracer/version"
+require "tracelogger/version"
 
 Gem::Specification.new do |s|
-  s.name        = "dumb_tracer"
+  s.name        = "tracelogger"
   s.version     = DumbTracer::VERSION
   s.authors     = ["Pavel Argentov"]
   s.email       = ["argentoff@gmail.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
-
-  s.rubyforge_project = "dumb_tracer"
+  s.homepage    = "https://github.com/argent-smith/tracelogger"
+  s.summary     = %q{Simple traceroute logger}
+  s.description = %q{"tracelogger host" sends the results of `traceroute #{host}` to syslog.}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
