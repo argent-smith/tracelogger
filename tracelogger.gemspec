@@ -11,10 +11,11 @@ Gem::Specification.new do |s|
   s.summary     = %q{Simple traceroute logger}
   s.description = %q{"tracelogger host" sends the results of `traceroute #{host}` to syslog.}
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.require_paths = ["lib"]
+  s.files            = `git ls-files`.split("\n")
+  s.test_files       = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables      = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.require_paths    = ["lib"]
+  s.extra_rdoc_files = ['README.rdoc']
 
   # specify any dependencies here; for example:
   s.add_development_dependency "yard"
