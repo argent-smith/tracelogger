@@ -43,7 +43,6 @@ module Tracelogger
     # Runs the found traceroute with the specified address and returns the
     # result.
     def trace host
-      p @command
       `#{@command} #{host} 2>&1`
     end
   end
