@@ -1,5 +1,5 @@
-require "tracelogger/version"
-require "optparse"
+require 'tracelogger/version'
+require 'optparse'
 require 'log4r'
 require 'log4r/outputter/syslogoutputter'
 
@@ -37,13 +37,14 @@ module Tracelogger
 
     # Finds the system's traceroute executable.
     def initialize
-      @command = `which traceroute`.chomp
+      @command = `/usr/bin/env PATH=$PATH:/sbin:/usr/sbin:/usr/local/sbin:/bin:/usr/bin:/usr/local/bin which traceroute`.chomp
     end
 
     # Runs the found traceroute with the specified address and returns the
     # result.
     def trace host
-      `env #{@command} #{host} 2>&1`
+      p @command
+      `#{@command} #{host} 2>&1`
     end
   end
 
