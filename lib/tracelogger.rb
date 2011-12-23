@@ -62,8 +62,14 @@ module Tracelogger
         opts.separator ""
         opts.separator "Optional parameters:"
 
+        opts.on "-m", "--multiline", "Enables logging multiline output as one message per line" do
+          opts[:mlo] = true
+        end
+
+        opts.on "-V", "--version", "Display version info and exit"
+
         opts.on_tail "-h", "--help", "Show this message" do
-          puts opts.help
+          opts.[:help] = true
         end
 
       end.parse!
@@ -94,8 +100,16 @@ module Tracelogger
       log Traceroute.new.trace @config.host
     end
 
+    # Works out the terminal cases: help || version display && exit
+    def terminal_case
+      case @config.options
+        when has_key? 
+      end
+    end
+
     # Runs the app scenario.
     def run
+      exit 0 if terminal_case
       start
       trace
       wrapup
