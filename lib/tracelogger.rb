@@ -80,6 +80,8 @@ module Tracelogger
       @log = Log.new
     end
 
+    # TODO: hide all besides #run under private!
+
     # Logs the message.
     def log message # :nodoc:
       @log.info message
